@@ -22,19 +22,19 @@ do {
 
 switch (opcion) {
     case "a":
-        let notaI = window.prompt("Introduce la nota: ");
+        let notaI = parseInt(window.prompt("Introduce la nota: "));
         notas_alumnos.unshift(notaI);
         console.table(notas_alumnos);
         break;
     
     case "b":
-        let notaF = window.prompt("Introduce la nota: ");
+        let notaF = parseInt(window.prompt("Introduce la nota: "));
         notas_alumnos.push(notaF);
         console.table(notas_alumnos);
         break;
     
     case "c":
-        let notaS = window.prompt("Sube X puntos las notas: ");
+        let notaS = parseInt(window.prompt("Sube X puntos las notas: "));
             for(let i = 0; i >= notas_alumnos.length; i++){
 
                 if(notas_alumnos[i] + notaS >= 10){
@@ -51,7 +51,7 @@ switch (opcion) {
         let media = 0;
         let acumulador = 0;
         for (let i = 0; i < notas_alumnos.length; i++) {
-            media += notas_alumnos[i];
+            media = notas_alumnos[i] + media;
             acumulador++;
         }
 
@@ -59,34 +59,37 @@ switch (opcion) {
         notaMin = notas_alumnos[0];
         notas_alumnos.reverse();
         notaMax = notas_alumnos[0]; 
+        
+        let media_completa = media / acumulador;
 
+        console.log(media);
 
-        let estadisticas = window.alert("Estadisticas: " +
+       window.alert("Estadisticas: " +
             "\n Maxima nota: "+ notaMax +
             "\n Minima nota: "+ notaMin +
-            "\n Nota media: "+ media / acumulador
+            "\n Nota media: "+ media_completa
         );
         
         break;
         case "e":
-        let notaVacias = window.alert("Vaciar array: ");
+        window.alert("Vaciar array: ");
         notas_alumnos.length = 0;
         console.log(notas_alumnos);
         window.alert("Has vaciado la lista");
         break;
 
         case "f":
-        let num_notas = window.prompt("Introduce el número de notas: ");
-        let notas = window.prompt("Introduce las notas: ");
+        let num_notas = parseInt(window.prompt("Introduce el número de notas: "));
+        let notas = parseInt(window.prompt("Introduce las notas: "));
 
         for(let i = 0; i > notas_alumnos.length; i++){
-            notas_alumnos[i] = notas;
+            notas_alumnos[i] = notas_alumnos + num_notas;
         }
         console.table(notas_alumnos);
         break;
 
         case "g":
-        let nota_eliminada = window.alert("Elimina el primer elemento de la lista: ");
+        window.alert("Elimina el primer elemento de la lista: ");
 
         notas_alumnos.shift();
 
@@ -94,7 +97,7 @@ switch (opcion) {
         break;
 
         case "h":
-        let nota2_eliminar = window.alert("Elimina el segundo elemento de la lista: ");
+        window.alert("Elimina el segundo elemento de la lista: ");
         if(notas_alumnos.length >= 2){
         notas_alumnos.splice(1, "")
 
@@ -106,7 +109,7 @@ switch (opcion) {
         break;
 
         case "i": 
-        let ceros = window.alert("Establecer a 0 todos los suspensos: ");
+        window.alert("Establecer a 0 todos los suspensos: ");
 
         for(let i = 0; i< notas_alumnos.length; i++){
             if(notas_alumnos[i] < 5){
@@ -119,8 +122,8 @@ switch (opcion) {
         case "j":
         window.alert("Sustituir Nota: ");
 
-        let nota_origen = window.prompt("Nota de origen: ");
-        let sustituir_nota = window.prompt("Que nota quieres añadir: ");
+        let nota_origen = parseInt(window.prompt("Nota de origen: "));
+        let sustituir_nota = parseInt(window.prompt("Que nota quieres añadir: "));
 
         for(let i = 0; i < notas_alumnos.length; i++){
             
@@ -134,8 +137,8 @@ switch (opcion) {
         break;
 
         case "k":
-        let nota_soli = window.prompt("Añade una nota: ");
-        let posición = window.prompt("Posición que quieres añadir: ");
+        let nota_soli = parseInt(window.prompt("Añade una nota: "));
+        let posición = parseInt(window.prompt("Posición que quieres añadir: "));
 
         notas_alumnos.splice(posición, 0, nota_soli);
 
