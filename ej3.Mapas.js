@@ -1,5 +1,17 @@
 let libros = new Map(); 
 
+class Libro{
+    constructor(titulo, autor, ejemplares){
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ejemplares = ejemplares;
+    }
+
+    toString(){
+        return "Titulo: " + this.titulo, " Autor: " + this.autor, " Ejemplares: " + this.ejemplares;
+    }
+}
+
 let salir = false;
 
 do {
@@ -19,16 +31,18 @@ do {
     switch (opcion) {
         case "a":
             let ISBN = parseInt(window.prompt("Introduce un ISBN: "));
-            let titulo = window.prompt("Titulo: ");
-            let autor = window.prompt("Autor: ");
-            let num_ejem = parseInt(window.prompt("Número de ejemplares: "));
+            const titulo = window.prompt("Introduce el titulo: ");
+            const autor = window.prompt("Introduce el autor: ");
+            const num_ejem = window.prompt("Introdude los ejemplares: ");
+
 
             if(libros.has(ISBN)){
                 window.alert("El ISBN coincide con uno ya creado. ");
             } else {
-                libros.set(ISBN, titulo, autor, num_ejem);
+                let libro = new Libro(titulo, autor, num_ejem);
+                let libro_completo = (ISBN, libro);
+                libros.set(libro_completo);
             }
-
             console.table(libros);
             break;
 
@@ -47,13 +61,17 @@ do {
         
         case "c":
             let ISBN_consult = parseInt(window.prompt("Introduce el ISBN: "));
-
+            let titulo_consult = libros.titulo;
             if(libros.has(ISBN_consult)){
-                console.log("ISBN: "+ ISBN_consult + ", ");
+                console.log("ISBN: "+ libros.get(ISBN_consult).toString);
             } else {
                 window.alert("No exixte este ISBN.");
             }
-            console.log();
+            break;
+
+        case "d":
+                
+
             break;
         case "k":
             salir = true
